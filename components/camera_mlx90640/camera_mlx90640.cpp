@@ -168,6 +168,7 @@ namespace esphome{
                 this->base_->get_server()->on("/thermal-camera", HTTP_GET, [](AsyncWebServerRequest *request){
                     ESP_LOGI(TAG, "Sending the image");
                     request->send(SPIFFS, "/thermal.bmp", "image/bmp", false);
+                    ESP_LOGI(TAG, "Image sent");
                 });
 
         }
@@ -266,7 +267,8 @@ namespace esphome{
                 }
                 meanTemp = total/((sizeof(pixels) / sizeof(pixels[0])));
 
-                 ThermalImageToWeb(pixels,camColors,  min_v,  max_v); // Save the image on the local files
+                ESP_LOGI(TAG, "Near take image");
+                ThermalImageToWeb(pixels,camColors,  min_v,  max_v); // Save the image on the local files
                 if (max_v > max_cam_v | max_v < min_cam_v) {
                     ESP_LOGE(TAG, "MLX READING VALUE ERRORS");
                     dataValid = false ;

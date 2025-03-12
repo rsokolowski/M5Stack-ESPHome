@@ -3,6 +3,7 @@
 static const char * TAG ="MLX90640_IMAGE";
 void ThermalImageToWeb(float mlx90640To[],const uint16_t camColors[], float MinTemp, float MaxTemp)
 {
+  ESP_LOGI(TAG,"Taking image");
   // --- SAVE BMP FILE --- //
   uint8_t colorIndex = 0;
   uint16_t color = 0;
